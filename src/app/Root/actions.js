@@ -32,10 +32,12 @@ export const actions = {
       }
     };
   },
+
   changeConnectionStatus: payload => ({
     type: types.CHANGE_CONNECTION_STATUS,
     payload
   }),
+
   subscribeToBook: () => () => {
     const subscribePayload = {
       "event": "subscribe",
@@ -45,6 +47,7 @@ export const actions = {
       wss.send(JSON.stringify(subscribePayload));
 
   },
+
   unsubscribe: () => () => {
     const unsubscribePayload = {
       "event": "unsubscribe",
@@ -52,12 +55,15 @@ export const actions = {
     }
     wss.send(JSON.stringify(unsubscribePayload));
   },
+
   close:()=>(dispatch)=>{
     if(wss.readyState===1){
       dispatch(actions.unsubscribe());
       wss.close();
     }
   },
+
   subscribed: payload => ({ type: types.SUBSCRIBED, payload }),
+
   message: payload => ({ type: types.MESSAGE, payload })
 };

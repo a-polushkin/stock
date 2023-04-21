@@ -12,11 +12,7 @@ const totalReducer = (acc, item, index) => [
     }
 ];
 
-const OrderBook = ({
-                       bids,
-                       asks,
-                       unsubscribe
-                   }) => {
+const OrderBook = ({ bids, asks, unsubscribe }) => {
     if (!bids || !Object.keys(bids).length) return <div/>;
 
     const format5 = new Intl.NumberFormat("en-US", {
