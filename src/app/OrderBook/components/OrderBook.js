@@ -43,13 +43,13 @@ const OrderBook = ({ bids, asks, unsubscribe }) => {
                 <button onClick={() => unsubscribe()}>Unsubscribe</button>
             </div>
             <div className="table">
-                <table className="bids">
-                    <thead className="header">
-                    <td className="cell">Count</td>
-                    <td className="cell">Amount</td>
-                    <td className="cell">Total</td>
-                    <td className="cell">Price</td>
-                    </thead>
+                <div className="bids">
+                    <div className="header">
+                    <div className="cell">Count</div>
+                    <div className="cell">Amount</div>
+                    <div className="cell">Total</div>
+                    <div className="cell">Price</div>
+                    </div>
                     <div className="bars">
                         <svg
                             style={{
@@ -73,24 +73,24 @@ const OrderBook = ({ bids, asks, unsubscribe }) => {
                             ))}
                         </svg>
                     </div>
-                    <tbody>
+                    <div>
                     {_.map(bidsSorted, ({price, count, amount, total}) => (
-                        <tr className="row" key={price}>
-                            <td className="cell">{count}</td>
-                            <td className="cell">{format(amount)}</td>
-                            <td className="cell">{format(total)}</td>
-                            <td className="cell">{format5(price)}</td>
-                        </tr>
+                        <div className="row" key={price}>
+                            <div className="cell">{count}</div>
+                            <div className="cell">{format(amount)}</div>
+                            <div className="cell">{format(total)}</div>
+                            <div className="cell">{format5(price)}</div>
+                        </div>
                     ))}
-                    </tbody>
-                </table>
-                <table className="asks">
-                    <thead className="header">
-                    <td className="cell">Price</td>
-                    <td className="cell">Total</td>
-                    <td className="cell">Amount</td>
-                    <td className="cell">Count</td>
-                    </thead>
+                    </div>
+                </div>
+                <div className="asks">
+                    <div className="header">
+                    <div className="cell">Price</div>
+                    <div className="cell">Total</div>
+                    <div className="cell">Amount</div>
+                    <div className="cell">Count</div>
+                    </div>
                     <div className="bars">
                         <svg className="bars-svg">
                             {_.map(asksSorted, ({price, count, amount, total}, index) => (
@@ -106,17 +106,15 @@ const OrderBook = ({ bids, asks, unsubscribe }) => {
                             ))}
                         </svg>
                     </div>
-                    <tbody>
                     {_.map(asksSorted, ({price, count, amount, total}) => (
-                        <tr className="row" key={price}>
-                            <td className="cell">{format5(price)}</td>
-                            <td className="cell">{format(total)}</td>
-                            <td className="cell">{format(-amount)}</td>
-                            <td className="cell">{count}</td>
-                        </tr>
+                        <div className="row" key={price}>
+                            <div className="cell">{format5(price)}</div>
+                            <div className="cell">{format(total)}</div>
+                            <div className="cell">{format(-amount)}</div>
+                            <div className="cell">{count}</div>
+                        </div>
                     ))}
-                    </tbody>
-                </table>
+                </div>
             </div>
         </div>
     );
