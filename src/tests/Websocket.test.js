@@ -7,6 +7,7 @@ describe('WebSocket  tests', () => {
 
         wss.on('open', () => {
             expect(wss.readyState).toBe(WebSocket.OPEN);
+            wss.close();
             done();
         });
     });
@@ -35,7 +36,8 @@ describe('WebSocket  tests', () => {
                 } else if (!secondMessage) {
                     secondMessage = JSON.parse(msg)
                     expect(secondMessage.event).toBe("subscribed");
-                    done()
+                    wss.close();
+                    done();
                 }
             });
         });

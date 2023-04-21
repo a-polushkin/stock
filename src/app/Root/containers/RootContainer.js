@@ -25,6 +25,8 @@ const RootContainer =(props)=> {
         return ()=>{
             close();
         }
+        // if we add props to the array of dependencies, it's going to close the connection
+        // eslint-disable-next-line
     },[]);
 
         return (

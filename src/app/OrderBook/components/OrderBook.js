@@ -1,17 +1,6 @@
 import React from "react";
 import _ from "lodash";
 
-const totalReducer = (acc, item, index) => [
-    ...acc,
-    {
-        ...item,
-        total:
-            index - 1 > 0
-                ? acc[index - 1].total + Math.abs(item.amount)
-                : Math.abs(item.amount)
-    }
-];
-
 const OrderBook = ({ bids, asks, unsubscribe }) => {
     if (!bids || !Object.keys(bids).length) return <div/>;
 
@@ -22,6 +11,17 @@ const OrderBook = ({ bids, asks, unsubscribe }) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     }).format;
+
+    const totalReducer = (acc, item, index) => [
+        ...acc,
+        {
+            ...item,
+            total:
+                index - 1 > 0
+                    ? acc[index - 1].total + Math.abs(item.amount)
+                    : Math.abs(item.amount)
+        }
+    ];
 
     const bidsSorted = _.orderBy(bids, ["price"], ["desc"]).reduce(
         totalReducer,
@@ -40,7 +40,7 @@ const OrderBook = ({ bids, asks, unsubscribe }) => {
         <div className="container">
             <div className="title">
                 ORDER BOOK BTC/USD
-                <button onClick={() => unsubscribe()}>Unsubscribe</button>
+                <button onClick={unsubscribe}>Unsubscribe</button>
             </div>
             <div className="table">
                 <div className="bids">
